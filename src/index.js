@@ -28,7 +28,7 @@ startApp().catch((err) => {
 app.get("/", async (req, res) => {
   try {
     const count = await redisClient.incr("visitors");
-    res.send(`Visitor count: ${count}`);
+    res.send(`visitors count: ${count}`);
   } catch (err) {
     console.error("Redis Error:", err);
     res.status(500).send("Unable to update visitor count");

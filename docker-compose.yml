@@ -1,9 +1,10 @@
-version: "3.8"
 services:
   my-redis-server:
-    image: redis:alpine
+    image: redis:8.12-rc3
     expose:
       - "6379"
+    volumes:
+      - redis-data-fresh:/data
 
   redis-docker-express-app:
     build:
@@ -13,3 +14,8 @@ services:
       - "3000:3000"
     depends_on:
       - my-redis-server
+    volumes:
+      - ./src:/usr/app/src
+
+volumes:
+  redis-data-fresh:
